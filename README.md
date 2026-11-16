@@ -25,6 +25,8 @@ docker compose exec php npm run build            # builds Vite assets to public/
 docker compose exec php php artisan migrate --seed --force
 ```
 
+To test a payment: click **Buy Now** on a product, fill in name and email, then pay with a PayPal sandbox *Personal* (buyer) account (Developer Dashboard > Sandbox > Accounts). The admin payments page (`/admin/payments`) updates live.
+
 ## Services
 
 | Service | Image / Build | Purpose | Port (host:container) | URL |
@@ -119,3 +121,7 @@ curl -I http://localhost:8882              # phpMyAdmin   -> 200
 - Storefront: http://localhost:8002 — lists the seeded products (Wireless Headphones, Mechanical Keyboard, USB-C Hub, Laptop Stand, 4K Monitor, Webcam HD).
 - Admin: http://localhost:8002/admin/login — log in with `admin` / `admin` (hardcoded credentials; no admin user is seeded).
 - If pages return HTTP 500 or render blank, make sure `npm run build` has run. If HTML references `http://localhost:517x` (Vite dev), remove the stale hot file: `docker compose exec php rm -f public/hot && docker compose exec php php artisan optimize:clear`.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
